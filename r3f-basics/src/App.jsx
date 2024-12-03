@@ -48,8 +48,6 @@ const DistortionShaderMaterial = shaderMaterial(
   `
 )
 
-
-
 // Register the custom shader material with React Three Fiber
 extend({ DistortionShaderMaterial })
 
@@ -112,17 +110,11 @@ const TVModel = ({ position, show }) => {
   useEffect(() => {
     new GLTFLoader().load('/src/models/lowpoly_tv.glb', (gltf) => {
       setTvModel(gltf.scene)
+      gltf.scene.rotation.set(0, Math.PI * 1.5, 0) // Adjust this as needed
+
     })
   }, [])
 
-    // Ensure the TV faces the camera and is correctly positioned when it's shown
-    useEffect(() => {
-      if (tvRef.current) {
-       
-        tvRef.current.lookAt(0, 0, 0) // Ensure it faces the camera (or origin)
-      }
-    }, [position, show]) // Run when position or show state changes
-    
   const springProps = useSpring({
     position: position, // Maintain the target card position
     scale: show ? [1, 1, 1] : [0, 0, 0], // Shrink effect when disappearing
@@ -139,15 +131,14 @@ const TVModel = ({ position, show }) => {
   )
 }
 
-// Main App component
 const App = () => {
   const [showTV, setShowTV] = useState(false)
   const [tvPosition, setTvPosition] = useState([0, 0, 0])
 
   const handleCardClick = (position) => {
-    // Set TV position and toggle visibility
+
     setTvPosition(position)
-    setShowTV(prev => !prev) // Toggle TV visibility
+    setShowTV(prev => !prev) 
   }
 
   return (
@@ -160,6 +151,8 @@ const App = () => {
 
       <PlaneCard position={[-2.3, 0, 0]} args={[1, 1.4, 1, 1]} onClick={handleCardClick} />
       <PlaneCard position={[1.3, 0, 0]} args={[1, 1.4, 1, 1]} onClick={handleCardClick} />
+
+      <PlaneCard position={[1.3, 1.5, 0]} args={[1, 1.4, 1, 1]} onClick={handleCardClick} />
       <PlaneCard position={[-0.5, 0, 0]} args={[1, 1.4, 1, 1]} onClick={handleCardClick} />
     </Canvas>
   )
