@@ -1,4 +1,26 @@
 {
+  "author": "Abdalla Abdelgadir",
+  "license": "ISC",
+  "contact": {
+    "number": "+1 (647) 607-2965",
+    "email": "your.email@example.com",
+    "github": "https://github.com/",
+    "linkedin": "https://linkedin.com/"
+  },
+  "projects": {
+    "sectionName": "Personal Projects",
+    "projectOne": "https://google.ca/",
+    "projectTwo": "https://google.ca/",
+    "projectThree": "https://google.ca/"
+  },
+  "Qualifications": {
+    "sectionName": "Qualifications",
+    "skillone": "C++",
+    "skilltwo": "Python",
+    "skillthree": "Javascript"
+  },
+
+  
   "name": "r3f-basics",
   "private": true,
   "version": "0.0.0",
@@ -11,8 +33,9 @@
   },
   "dependencies": {
     "@react-spring/three": "^9.7.5",
-    "@react-three/drei": "^9.109.2",
+    "@react-three/drei": "^9.120.4",
     "@react-three/fiber": "^8.16.8",
+    "@vitejs/plugin-vue": "^5.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.167.0"
@@ -20,7 +43,7 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
