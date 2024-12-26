@@ -33,6 +33,28 @@ li {
 
 }
 
+.center-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;     /* Vertically center */
+    height: auto;         /* Full viewport height */
+    width: 100%;             /* Full width */
+
+
+  }
+
+  .center-container li a {
+    bottom: 10px;
+    text-decoration: none;
+    font-size: 16px;
+    color: rgb(255, 255, 255); /* Link color */
+    font-family: Arial, sans-serif;
+    display: block;
+    margin: 10px 0; /* Adjust spacing between links */
+    
+  }
+
+
 .resume {
     position: relative;
     display: flex;
@@ -60,7 +82,10 @@ li {
     height: 1px;
     background-color: #fff
 }
-
+.home {
+    font-family: "Lucida Console";
+    font-style: normal
+}
 .quadBox {
     align-items: center;
     justify-content: center;
@@ -300,12 +325,14 @@ a {
     padding: 16px;
     position: relative;
     background-color: rgb(3, 44, 2);
+    
 }
 
 .bottomNav,
 .topNav {
     font-family: var(--font-mono);
-    z-index: 100000
+    z-index: 100000;
+    font-size: 17px;
 }
 
 .bottomNav {

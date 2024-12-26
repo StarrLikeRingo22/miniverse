@@ -19,7 +19,7 @@ const NavBar = () => {
       position: 'absolute',
       top: 3,
     }}>
-            <a href="/">Return to Home</a>
+            <a href="/">Return Home</a>
             </div>
 
         <div className="widthLine" style={{ 
