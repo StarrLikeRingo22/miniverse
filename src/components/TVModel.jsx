@@ -17,7 +17,7 @@ const TVModel = ({ position, show, activeCard }) => {
   const raycaster = new Raycaster()
 
   useEffect(() => {
-    new GLTFLoader().load('/src/models/lowpoly_tv.glb', (gltf) => {
+    new GLTFLoader().load('/models/lowpoly_tv.glb', (gltf) => {
       const model = gltf.scene
       setTvModel(model)
 
