@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import './App.css'
-import Planecard from '/Planecard'
+import Planecard from './Planecard.jsx'
 import TVModel from './TVModel'
 import NavBar from './NavBar'
 
