@@ -1,4 +1,14 @@
 {
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
     "rewrites": [
       { "source": "/Three", "destination": "/Three.html" },
       { "source": "/Classic", "destination": "/Classic.html" },
