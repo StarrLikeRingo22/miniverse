@@ -372,37 +372,3 @@ a {
     flex-direction: column
 }
 
-/* Card Layout Styles */
-.card {
-    display: inline-block;
-    width: 200px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #f9f9f9;
-    transition: transform 0.2s ease;
-}
-
-.card img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
-.card h3 {
-    margin: 10px 0 5px;
-    font-size: 1.2em;
-}
-
-.card p {
-    font-size: 0.9em;
-    color: #666;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
