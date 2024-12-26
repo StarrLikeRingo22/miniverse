@@ -2,7 +2,7 @@
     "rewrites": [
       { "source": "/Three", "destination": "/Three.html" },
       { "source": "/Classic", "destination": "/Classic.html" },
-      { "source": "/Resume", "destination": "/resume.html" },
+      { "source": "/Resume", "destination": "/Classic/resume.html" },
       { "source": "/Attributions", "destination": "/attributions.html" }
     ]
   }
