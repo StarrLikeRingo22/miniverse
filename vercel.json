@@ -4,22 +4,5 @@
       { "source": "/Classic", "destination": "/Classic.html" },
       { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
       { "source": "/Attributions", "destination": "/attributions.html" }
-    ],
-    "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist",
-        "includeFiles": ["src/**"]
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+    ]
   }
