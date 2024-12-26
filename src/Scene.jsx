@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom/client';
-
+import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import './App.css'
 import Planecard from './planecard'
 import TVModel from './TVModel'
 import NavBar from './NavBar'
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei'
 
 const Scene = () => {
 
@@ -20,9 +19,9 @@ const Scene = () => {
     setActiveCard(cardId) // Set the active card when clicked
     setShowTV(prev => !prev)
     if (showTV && activeCard === cardId) {
-      setShowTV(false); // Hide TV (spring back in)
+      setShowTV(false) // Hide TV (spring back in)
     } else {
-      setShowTV(true);  // Show TV (spring out)
+      setShowTV(true)  // Show TV (spring out)
     }
 
 

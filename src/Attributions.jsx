@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const Attributions = () => {
   const references = [
@@ -32,7 +32,7 @@ const Attributions = () => {
       dateCreated: "April 2020",
       link: "https://vitejs.dev/",
     },
-  ];
+  ]
 
   return (
     <div style={{ padding: "20px", textAlign: "center", fontFamily: "Arial, sans-serif" }}>
@@ -74,19 +74,19 @@ const Attributions = () => {
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
 const tableHeaderStyle = {
   padding: "10px",
   border: "1px solid #ccc",
   textAlign: "left",
-};
+}
 
 const tableCellStyle = {
   padding: "10px",
   border: "1px solid #ccc",
   textAlign: "left",
-};
+}
 
-export default Attributions;
+export default Attributions

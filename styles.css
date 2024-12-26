@@ -32,26 +32,19 @@ li {
     text-align: left;
 
 }
-
 .center-container {
-    display: flex;
-    justify-content: center; /* Horizontally center */
-    align-items: center;     /* Vertically center */
-    height: auto;         /* Full viewport height */
-    width: 100%;             /* Full width */
-
-
+    display: grid;
+    justify-content: center; 
+    line-height: 20px;
+    place-items: center;  
+    text-align: center;  
+    font-size: 17px;
   }
+ 
 
   .center-container li a {
-    bottom: 10px;
-    text-decoration: none;
-    font-size: 16px;
-    color: rgb(255, 255, 255); /* Link color */
-    font-family: Arial, sans-serif;
-    display: block;
-    margin: 10px 0; /* Adjust spacing between links */
-    
+    text-decoration: underline; 
+    margin: 10px 0; 
   }
 
 
@@ -127,7 +120,8 @@ li {
 
 .outLinkStyle {
     cursor: pointer;
-    text-decoration: underline
+    text-decoration: underline;
+    pointer-events: auto;
 }
 
 .outLinkStyle,
@@ -347,7 +341,8 @@ a {
 .linkNoMargin {
     font-family: var(--font-mono);
     text-decoration: underline;
-    position: relative
+    position: relative;
+    font-size: 17px;
 }
 
 .center {

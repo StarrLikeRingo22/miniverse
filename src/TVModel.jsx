@@ -12,9 +12,9 @@ const TVModel = ({ position, show, activeCard }) => {
   const tvRef = useRef()
   const screenTexture = useLoader(TextureLoader, '/img/screen.jpg')
   const [tvModel, setTvModel] = useState(null)
-  const [activeButton, setActiveButton] = useState(null);
-  const { camera, pointer } = useThree(); // Access mouse position and camera
-  const raycaster = new Raycaster();
+  const [activeButton, setActiveButton] = useState(null)
+  const { camera, pointer } = useThree() // Access mouse position and camera
+  const raycaster = new Raycaster()
 
   useEffect(() => {
     new GLTFLoader().load('/src/models/lowpoly_tv.glb', (gltf) => {
@@ -29,8 +29,8 @@ const TVModel = ({ position, show, activeCard }) => {
           console.log('Child Mesh:', child.name)
           console.log('Child Material:', child.material)
           if (child.name.includes('defaultMaterial_3')) {
-            console.log('Found button:', child.name);
-            child.userData = { name: child.name };
+            console.log('Found button:', child.name)
+            child.userData = { name: child.name }
             // You can now apply logic to this button, like adding event listeners
           }
           
@@ -53,34 +53,34 @@ const TVModel = ({ position, show, activeCard }) => {
   const pointerVector = new Vector2(
     (pointer.x / window.innerWidth) * 2 - 1,
     -(pointer.y / window.innerHeight) * 2 + 1
-  );
+  )
 
   // Set raycaster's origin and direction
-  raycaster.ray.origin.setFromMatrixPosition(camera.matrixWorld);
+  raycaster.ray.origin.setFromMatrixPosition(camera.matrixWorld)
   raycaster.ray.direction.set(pointerVector.x, pointerVector.y, 1)
     .unproject(camera)
     .sub(raycaster.ray.origin)
-    .normalize();
+    .normalize()
 
   // Check for intersections with the TV model
-  const intersects = raycaster.intersectObjects(tvModel ? tvModel.children : [], true);
+  const intersects = raycaster.intersectObjects(tvModel ? tvModel.children : [], true)
 
   if (intersects.length > 0) {
-    const object = intersects[0].object;
+    const object = intersects[0].object
     if (object.userData.name) {
-      console.log("Button clicked:", object.userData.name);
-      onButtonClick(object.userData.name); // Pass clicked button name to parent (scene.jsx)
+      console.log("Button clicked:", object.userData.name)
+      onButtonClick(object.userData.name) // Pass clicked button name to parent (scene.jsx)
     }
   }
-};
+}
 
   // Add event listener for click
   useEffect(() => {
-    window.addEventListener("click", handleClick);
+    window.addEventListener("click", handleClick)
     return () => {
-      window.removeEventListener("click", handleClick);
-    };
-  }, [handleClick]);
+      window.removeEventListener("click", handleClick)
+    }
+  }, [handleClick])
 
   const springProps = useSpring({
     position: position, // Maintain the target card position

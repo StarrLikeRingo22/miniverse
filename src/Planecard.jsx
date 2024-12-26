@@ -48,8 +48,6 @@ extend({ DistortionShaderMaterial })
 
 const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard }) => {
 
-  console.log(cardId); // Debug the value of cardId
-
   const ref = useRef()
   const blueCard = useLoader(TextureLoader, '/img/blueCard.png')
   const orangeCard = useLoader(TextureLoader, '/img/cardOrange.png')
@@ -59,47 +57,36 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
     useLoader(TextureLoader, `/img/disp1.jpg`),
     useLoader(TextureLoader, `/img/disp2.jpg`),
     useLoader(TextureLoader, `/img/disp3.jpg`),
-  ] // Needs Fix: Meant to distort images based on cardID (0-3)
-
+  ] 
+  const [dispTexture, setDispTexture ] = useState(displacementTextures[0])
   const [hovered, setHover] = useState(false)
   const [zoom, setZoom] = useState(false)
   const [dispFactor, setDispFactor] = useState(0) // distortion factor
   const { camera } = useThree()
   const vec = new THREE.Vector3()
 
-  const targetPosition = useRef(new THREE.Vector3()); // Default camera target
-  const originalPosition = new THREE.Vector3(0, 0, 5); // original position
-
-
-
-  // console.log('current position', camera.position)
-
-
-
-
+  const targetPosition = useRef(new THREE.Vector3()) // Default camera target
+  const originalPosition = new THREE.Vector3(0, 0, 5) // original position
 
   useFrame((state, delta) => {
 
-    if (activeCard === cardId) {
+    if (activeCard === cardId) { // Zoom function
       if (zoom && ref.current) {
-        const targetWorldPosition = new THREE.Vector3();
-        ref.current.getWorldPosition(targetWorldPosition);
-        const zoomOffset = new THREE.Vector3(0, 0, 3); // Adjust offset as needed
-        const targetCameraPosition = targetWorldPosition.clone().add(zoomOffset);
-        camera.position.lerp(targetCameraPosition, 0.1); // Smooth camera transition
-  
-        const direction = targetWorldPosition.clone().sub(camera.position).normalize();
-        camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), direction);
+        const targetWorldPosition = new THREE.Vector3()
+        ref.current.getWorldPosition(targetWorldPosition)
+        const zoomOffset = new THREE.Vector3(0, 0, 3) // Adjust offset as needed
+        const targetCameraPosition = targetWorldPosition.clone().add(zoomOffset)
+        camera.position.lerp(targetCameraPosition, 0.1) // Smooth camera transition
+        const direction = targetWorldPosition.clone().sub(camera.position).normalize()
+        camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), direction)
       } else if (!zoom) {
-      // Smoothly return to the original position
-      camera.position.lerp(originalPosition, 0.05);
-      // Reset camera orientation to default
-      const defaultDirection = new THREE.Vector3(0, 0, 0);
-      camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), defaultDirection);
+      camera.position.lerp(originalPosition, 0.05)    // Smoothly return to the original position
+      const defaultDirection = new THREE.Vector3(0, 0, 0)       // Reset camera orientation to default
+      camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), defaultDirection)
     }
 
   }
-    // Update dispFactor gradually on hover
+    // Displacement Function
     if (hovered && dispFactor < 1) {
       setDispFactor((prev) => Math.min(prev + delta * 2, 1))
     } else if (!hovered && dispFactor > 0) {
@@ -108,35 +95,30 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
   })
 
   const handlePointEnter = (cardId) => {
-    setHover(true); 
+    setHover(true) 
   
     if (cardId >= 0 && cardId < displacementTextures.length) {
-     // Needs Fix: cardID undefined needs to pass value of 0-3
-      setDispTexture(displacementTextures[cardId]); 
+      setDispTexture(displacementTextures[cardId]) // Seperate images upon card index
     } 
-  };
+  }
 
   const handleClick = (cardId) => {
-    console.log('Active card:', activeCard, 'Clicked card:', cardId);
+    console.log('Active card:', activeCard, 'Clicked card:', cardId)
     // Update the active card (for content switching)
     if (activeCard === cardId) {
       // Toggle zoom for the same card
-      setZoom((prevZoom) => !prevZoom); // works zooms back out
+      setZoom((prevZoom) => !prevZoom) // zooms back out
     } else {
       // Switch to a new card
-      setActiveCard(cardId); // Update active card
-      setZoom(true); // Enable zoom for the new card
+      setActiveCard(cardId) // Update active card
+      setZoom(true) // Enable zoom for the new card
 
     }
     if (onClick) {
       onClick(position)
     }
-    
   }
 
-
-
-  const [dispTexture, setDispTexture ] = useState(displacementTextures[0]);
 
 
   return (
