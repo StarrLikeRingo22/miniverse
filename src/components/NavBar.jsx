@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles.css'
+import '../App.css'
 
 
 const NavBar = () => {
@@ -49,7 +49,7 @@ const NavBar = () => {
       position: 'absolute',
       bottom: '0',
     }}>
-        <a href="/public/attributions.html">Attributions</a>
+        <a href="/Attributions">Attributions</a>
     </div>
 </div>
 
