@@ -1,16 +1,9 @@
 {
     "redirects": [
-      { "source": "/", "destination": "/Home.html" },
-      { "source": "/Three", "destination": "/index.html" },
-      { "source": "/Classic", "destination": "/Classic.html" },
-      { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
-      { "source": "/Attributions", "destination": "/attributions.html" }
-    ],
-    "rewrites": [
-      { "source": "/Home.html", "destination": "/" },
-      { "source": "/index.html", "destination": "/Three" },
-      { "source": "/Classic.html", "destination": "/Classic" },
-      { "source": "/Classic/resume.html", "destination": "/Classic/Resume" },
-      { "source": "/attributions.html", "destination": "/Attributions" }
+      { "source": "/", "destination": "/Home.html", "permanent": true },
+      { "source": "/Three", "destination": "/index.html", "permanent": true },
+      { "source": "/Classic", "destination": "/Classic.html", "permanent": true },
+      { "source": "/Classic/Resume", "destination": "/Classic/resume.html", "permanent": true },
+      { "source": "/Attributions", "destination": "/attributions.html", "permanent": true }
     ]
   }
