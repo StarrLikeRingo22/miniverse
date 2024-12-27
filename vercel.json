@@ -1,5 +1,5 @@
 {
-    "rewrites": [
+    "redirects": [
       { "source": "/", "destination": "/Scene.html" },
       { "source": "/Three", "destination": "/Three.html" },
       { "source": "/Classic", "destination": "/Classic.html" },
