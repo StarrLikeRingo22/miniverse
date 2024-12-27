@@ -2,14 +2,14 @@
     
     "redirects": [
       { "source": "/", "destination": "/Scene.html" },
-      { "source": "/Three", "destination": "/Three.html" },
+      { "source": "/Three", "destination": "/index.html" },
       { "source": "/Classic", "destination": "/Classic.html" },
       { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
       { "source": "/Attributions", "destination": "/attributions.html" }
     ],
     "rewrites": [
       { "source": "/", "destination": "/Scene.html" },
-      { "source": "/Three", "destination": "/Three.html" },
+      { "source": "/Three", "destination": "/index.html" },
       { "source": "/Classic", "destination": "/Classic.html" },
       { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
       { "source": "/Attributions", "destination": "/attributions.html" }
