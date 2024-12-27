@@ -5,5 +5,12 @@
       { "source": "/Classic", "destination": "/Classic.html", "permanent": true },
       { "source": "/Classic/Resume", "destination": "/Classic/resume.html", "permanent": true },
       { "source": "/Attributions", "destination": "/attributions.html", "permanent": true }
+    ],
+    "rewrites": [
+      { "source": "/Home.html", "destination": "/", "permanent": true },
+      { "source": "/index.html", "destination": "/Three", "permanent": true },
+      { "source": "/Classic.html", "destination": "/Classic", "permanent": true },
+      { "source": "/Classic/resume.html", "destination": "/Classic/Resume", "permanent": true },
+      { "source": "/attributions.html", "destination": "/Attributions", "permanent": true }
     ]
   }
