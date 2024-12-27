@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'M PLUS Code Latin', sans-serif;
     background-color: rgb(4, 61, 3);
     color: white;
     margin: 0;
@@ -9,6 +9,14 @@ body {
 h1 {
     text-align: center;
     margin-top: 20px;
+}
+
+h2 {
+    position: relative;
+    font-size: 17px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 4px
 }
 
 ul {
@@ -24,28 +32,29 @@ li {
 .attributions {
     display: flex;
     flex-direction: column;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 1px;
+    padding-bottom: 20px;
     flex: 1 1;
     align-items: flex-start;
     justify-content: center;
     text-align: left;
 
 }
+
 .center-container {
     display: grid;
-    justify-content: center; 
+    justify-content: center;
     line-height: 20px;
-    place-items: center;  
-    text-align: center;  
+    place-items: center;
+    text-align: center;
     font-size: 17px;
-  }
- 
+}
 
-  .center-container li a {
-    text-decoration: underline; 
-    margin: 10px 0; 
-  }
+
+.center-container li a {
+    text-decoration: underline;
+    margin: 10px 0;
+}
 
 
 .resume {
@@ -79,7 +88,7 @@ a {
     padding: 16px;
     position: relative;
     background-color: rgb(3, 44, 2);
-    
+
 }
 
 .bottomNav,

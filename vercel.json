@@ -1,13 +1,31 @@
 {
-    
   "rewrites": [
-    { "source": "/Home", "destination": "/Home.html" },
-    { "source": "/Three", "destination": "/index.html" },
-    { "source": "/Classic", "destination": "/Classic.html" },
-    { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
-    { "source": "/Attributions", "destination": "/attributions.html" }
+    {
+      "source": "/",
+      "destination": "/Home.html"
+    },
+    {
+      "source": "/Three",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/Classic",
+      "destination": "/Classic.html"
+    },
+    {
+      "source": "/Classic/Resume",
+      "destination": "/Classic/resume.html"
+    },
+    {
+      "source": "/Attributions",
+      "destination": "/attributions.html"
+    }
   ],
   "redirects": [
-    { "source": "/", "destination": "/Home", "permanent": true }
+    {
+      "source": "/",
+      "destination": "/Home",
+      "permanent": true
+    }
   ]
-  }
+}

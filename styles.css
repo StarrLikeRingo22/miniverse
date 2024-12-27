@@ -32,20 +32,21 @@ li {
     text-align: left;
 
 }
+
 .center-container {
     display: grid;
-    justify-content: center; 
+    justify-content: center;
     line-height: 20px;
-    place-items: center;  
-    text-align: center;  
+    place-items: center;
+    text-align: center;
     font-size: 17px;
-  }
- 
+}
 
-  .center-container li a {
-    text-decoration: underline; 
-    margin: 10px 0; 
-  }
+
+.center-container li a {
+    text-decoration: underline;
+    margin: 10px 0;
+}
 
 
 .resume {
@@ -79,7 +80,7 @@ a {
     padding: 16px;
     position: relative;
     background-color: rgb(3, 44, 2);
-    
+
 }
 
 .bottomNav,

@@ -1,3 +1,8 @@
+* {
+    font-family: 'M PLUS Code Latin', Arial, sans-serif;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: rgb(4, 61, 3);
@@ -5,6 +10,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 
 h1 {
     text-align: center;
@@ -32,20 +38,21 @@ li {
     text-align: left;
 
 }
+
 .center-container {
     display: grid;
-    justify-content: center; 
+    justify-content: center;
     line-height: 20px;
-    place-items: center;  
-    text-align: center;  
+    place-items: center;
+    text-align: center;
     font-size: 17px;
-  }
- 
+}
 
-  .center-container li a {
-    text-decoration: underline; 
-    margin: 10px 0; 
-  }
+
+.center-container li a {
+    text-decoration: underline;
+    margin: 10px 0;
+}
 
 
 .resume {
@@ -75,10 +82,12 @@ li {
     height: 1px;
     background-color: #fff
 }
+
 .home {
     font-family: "Lucida Console";
     font-style: normal
 }
+
 .quadBox {
     align-items: center;
     justify-content: center;
@@ -319,7 +328,7 @@ a {
     padding: 16px;
     position: relative;
     background-color: rgb(3, 44, 2);
-    
+
 }
 
 .bottomNav,
