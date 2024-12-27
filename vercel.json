@@ -7,10 +7,10 @@
       { "source": "/Attributions", "destination": "/attributions.html", "permanent": true }
     ],
     "rewrites": [
-      { "source": "/Home.html", "destination": "/", "permanent": true },
-      { "source": "/index.html", "destination": "/Three", "permanent": true },
-      { "source": "/Classic.html", "destination": "/Classic", "permanent": true },
-      { "source": "/Classic/resume.html", "destination": "/Classic/Resume", "permanent": true },
-      { "source": "/attributions.html", "destination": "/Attributions", "permanent": true }
+      { "source": "/Home.html", "destination": "/" },
+      { "source": "/index.html", "destination": "/Three" },
+      { "source": "/Classic.html", "destination": "/Classic" },
+      { "source": "/Classic/resume.html", "destination": "/Classic/Resume" },
+      { "source": "/attributions.html", "destination": "/Attributions" }
     ]
   }
