@@ -1,13 +1,12 @@
 {
-    
+    "redirects": [
+    { "source": "/", "destination": "/Home.html", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/Home.html" },
     { "source": "/Three", "destination": "/index.html" },
     { "source": "/Classic", "destination": "/Classic.html" },
     { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
     { "source": "/Attributions", "destination": "/attributions.html" }
-  ],
-  "redirects": [
-    { "source": "/", "destination": "/", "permanent": true }
   ]
   }
