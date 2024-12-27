@@ -1,20 +1,46 @@
-import { useEffect, useState } from "react";
+import React from "react";
+import Planecard from "./Planecard";
 
-const Mobile = () => {
-    const [isMobile, setIsMobile] = useState(false);
-  
-    useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);  // Adjust this based on your mobile threshold
-      };
-  
-      window.addEventListener("resize", handleResize);
-      handleResize(); // Call once on mount to set initial value
-  
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-  
-    return isMobile;
-  };
+
+
+const Mobile = ({ handleCardClick, activeCard, setActiveCard }) => {
+  const cardSize = [0.5, 0.7, 0.5] // Adjusted size for mobile
+  return (
+    <>
+      <Planecard
+        position={[0, 0, 0]}
+        args={cardSize}
+        onClick={(position) => handleCardClick(position, 0)}
+        cardId={0}
+        activeCard={activeCard}
+        setActiveCard={setActiveCard}
+      />
+      <Planecard
+        position={[0, -2, 0]}
+        args={cardSize}
+        onClick={(position) => handleCardClick(position, 1)}
+        cardId={1}
+        activeCard={activeCard}
+        setActiveCard={setActiveCard}
+      />
+      <Planecard
+        position={[0, -4, 0]}
+        args={cardSize}
+        onClick={(position) => handleCardClick(position, 2)}
+        cardId={2}
+        activeCard={activeCard}
+        setActiveCard={setActiveCard}
+      />
+      <Planecard
+        position={[0, -6, 0]}
+        args={cardSize}
+        onClick={(position) => handleCardClick(position, 3)}
+        cardId={3}
+        activeCard={activeCard}
+        setActiveCard={setActiveCard}
+      />
+    </>
+  )
+}
 
 export default Mobile
