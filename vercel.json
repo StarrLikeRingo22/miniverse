@@ -1,7 +1,8 @@
 {
   "rewrites": [
-    { "source": "/Home", "destination": "/Home.html" },
     { "source": "/", "destination": "/Home" },
+    { "source": "/Home", "destination": "/Home.html" },
+    
     { "source": "/Three", "destination": "/index.html" },
     { "source": "/Classic", "destination": "/Classic.html" },
     { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
