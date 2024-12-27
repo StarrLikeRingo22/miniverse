@@ -6,5 +6,8 @@
     { "source": "/Classic", "destination": "/Classic.html" },
     { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
     { "source": "/Attributions", "destination": "/attributions.html" }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/", "permanent": true }
   ]
   }
