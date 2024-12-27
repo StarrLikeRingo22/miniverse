@@ -5,5 +5,12 @@
       { "source": "/Classic", "destination": "/Classic.html" },
       { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
       { "source": "/Attributions", "destination": "/attributions.html" }
+    ],
+    "rewrites": [
+      { "source": "/", "destination": "/Home.html" },
+      { "source": "/Three", "destination": "/index.html" },
+      { "source": "/Classic", "destination": "/Classic.html" },
+      { "source": "/Classic/Resume", "destination": "/Classic/resume.html" },
+      { "source": "/Attributions", "destination": "/attributions.html" }
     ]
   }
