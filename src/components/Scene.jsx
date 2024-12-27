@@ -4,7 +4,7 @@ import '../App.css'
 import Planecard from './Planecard.jsx'
 import TVModel from './TVModel.jsx'
 import NavBar from './NavBar.jsx'
-import { useMediaQuery } from 'react-responsive'
+import Mobile from './Mobile.jsx'
 
 
 const Scene = () => {
@@ -12,7 +12,7 @@ const Scene = () => {
   const [showTV, setShowTV] = useState(false)
   const [tvPosition, setTvPosition] = useState([0, 0, 0])
   const [activeCard, setActiveCard] = useState(null) // Track the active card
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const isMobile = Mobile(); // Use the mobile check hook
 
 
   const handleCardClick = (position, cardId) => {

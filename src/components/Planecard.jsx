@@ -120,7 +120,6 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
   }
 
 
-
   return (
     <mesh
       ref={ref}
