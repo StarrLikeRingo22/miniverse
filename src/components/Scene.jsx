@@ -32,8 +32,8 @@ const Scene = () => {
     <>
     <NavBar />
     <Canvas>
-      <directionalLight position={[0, 0, 2]} intensity={0.5} />
-      <ambientLight intensity={0.1} />
+      <directionalLight position={[3, 4, 4.5]} intensity={1.5} />
+      <ambientLight intensity={0.2} />
       { /*  only show if card is click       v */}
       <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
       
