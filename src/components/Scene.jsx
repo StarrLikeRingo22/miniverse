@@ -16,7 +16,7 @@ const Scene = () => {
   const [isMobile, setIsMobile] = useState(false)
 
   const mobile = useMediaQuery({ query: '(max-width: 800px)' }) // Mobile detection
-  
+
   useEffect(() => {
     setIsMobile(mobile)
   }, [mobile])
@@ -35,64 +35,25 @@ const Scene = () => {
   const cardSize = isMobile ? [0.5, 0.7, 0.5] : [1, 1.4, 1, 1]
 
   console.log('TV positioning:', tvPosition)
-    // Debugging log for key values
-    console.log("isMobile:", isMobile);
-    console.log("cardSize:", cardSize);
+  // Debugging log for key values
+  console.log("isMobile:", isMobile);
+  console.log("cardSize:", cardSize);
 
   return (
     <>
-    <NavBar />
-    <Canvas>
-      <directionalLight position={[3, 4, 4]} intensity={1.5} />
-      <ambientLight intensity={0.2} />
-      { /*  only show if card is click       v */}
-      <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
-      
+      <NavBar />
+      <Canvas>
+        <directionalLight position={[3, 4, 4]} intensity={1.5} />
+        <ambientLight intensity={0.2} />
+        { /*  only show if card is click       v */}
+        <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
+        <>
+          <Planecard position={[-2.6, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />
+          <Planecard position={[0.9, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
+          <Planecard position={[2.6, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 2)} cardId={2} activeCard={activeCard} setActiveCard={setActiveCard} />
+          <Planecard position={[-0.8, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 3)} cardId={3} activeCard={activeCard} setActiveCard={setActiveCard} />
+        </>
 
-        {isMobile ? (
-          <>
-            <Planecard
-              position={[0, 0, 0]}
-              args={cardSize}
-              onClick={(position) => handleCardClick(position, 0)}
-              cardId={0}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={[-2, 0, 0]}
-              args={cardSize}
-              onClick={(position) => handleCardClick(position, 1)}
-              cardId={1}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={[-4, 0, 0]}
-              args={cardSize}
-              onClick={(position) => handleCardClick(position, 2)}
-              cardId={2}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={[-6, 0, 0]}
-              args={cardSize}
-              onClick={(position) => handleCardClick(position, 3)}
-              cardId={3}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-          </>
-        ) : (
-          <>
-
-      <Planecard position={[-2.6, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />
-      <Planecard position={[0.9, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
-      <Planecard position={[2.6, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 2)} cardId={2} activeCard={activeCard} setActiveCard={setActiveCard} />
-      <Planecard position={[-0.8, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 3)} cardId={3} activeCard={activeCard} setActiveCard={setActiveCard} />
-          </>
-        )}
       </Canvas>
     </>
   )
