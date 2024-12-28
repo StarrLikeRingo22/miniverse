@@ -17,7 +17,7 @@ const Scene = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768) // Threshold for mobile devices
+      setIsMobile(window.innerWidth <= 500) // Threshold for mobile devices
     }
 
     handleResize()
@@ -42,7 +42,7 @@ const Scene = () => {
     // Debugging log for key values
     console.log("isMobile:", isMobile);
     console.log("cardSize:", cardSize);
-    
+
   return (
     <>
     <NavBar />
