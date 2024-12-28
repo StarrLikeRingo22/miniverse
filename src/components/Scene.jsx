@@ -39,7 +39,10 @@ const Scene = () => {
   const cardSize = isMobile ? [0.5, 0.7, 0.5] : [1, 1.4, 1, 1]
 
   console.log('TV positioning:', tvPosition)
-
+    // Debugging log for key values
+    console.log("isMobile:", isMobile);
+    console.log("cardSize:", cardSize);
+    
   return (
     <>
     <NavBar />
