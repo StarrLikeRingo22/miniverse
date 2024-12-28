@@ -74,7 +74,7 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
       if (zoom && ref.current) {
         const targetWorldPosition = new THREE.Vector3()
         ref.current.getWorldPosition(targetWorldPosition)
-        const zoomOffset = new THREE.Vector3(0, 0, 3) // Adjust offset as needed
+        const zoomOffset = new THREE.Vector3(0, 0, 2.25) // Adjust offset as needed
         const targetCameraPosition = targetWorldPosition.clone().add(zoomOffset)
         camera.position.lerp(targetCameraPosition, 0.1) // Smooth camera transition
         const direction = targetWorldPosition.clone().sub(camera.position).normalize()
