@@ -5,6 +5,7 @@ import Planecard from './Planecard.jsx'
 import TVModel from './TVModel.jsx'
 import NavBar from './NavBar.jsx'
 import Mobile from './Mobile.jsx'
+import { useMediaQuery } from 'react-responsive'
 
 
 const Scene = () => {
@@ -14,16 +15,11 @@ const Scene = () => {
   const [activeCard, setActiveCard] = useState(null) // Track the active card
   const [isMobile, setIsMobile] = useState(false)
 
-
+  const mobile = useMediaQuery({ query: '(max-width: 800px)' }) // Mobile detection
+  
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 500) // Threshold for mobile devices
-    }
-
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    setIsMobile(mobile)
+  }, [mobile])
 
   const handleCardClick = (position, cardId) => {
     setTvPosition(position)
@@ -53,14 +49,42 @@ const Scene = () => {
       <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
       
 
-      {isMobile ? (
-          <Mobile
-            handleCardClick={handleCardClick}
-            activeCard={activeCard}
-            setActiveCard={setActiveCard}
-          />
+        {isMobile ? (
+          <>
+            <Planecard
+              position={[0, 0, 0]}
+              args={cardSize}
+              onClick={(position) => handleCardClick(position, 0)}
+              cardId={0}
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+            <Planecard
+              position={[-2, 0, 0]}
+              args={cardSize}
+              onClick={(position) => handleCardClick(position, 1)}
+              cardId={1}
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+            <Planecard
+              position={[-4, 0, 0]}
+              args={cardSize}
+              onClick={(position) => handleCardClick(position, 2)}
+              cardId={2}
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+            <Planecard
+              position={[-6, 0, 0]}
+              args={cardSize}
+              onClick={(position) => handleCardClick(position, 3)}
+              cardId={3}
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+          </>
         ) : (
-          // Render the desktop layout if not on mobile
           <>
 
       <Planecard position={[-2.6, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />

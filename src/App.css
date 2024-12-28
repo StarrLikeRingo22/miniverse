@@ -141,3 +141,19 @@ h4 {
     margin: 10px 0;
   }
 }
+
+/* For mobile view */
+.mobile-view {
+  background-color: lightblue;
+  color: rgb(1, 70, 6);
+  padding: 20px;
+  font-size: 16px;
+}
+
+/* For desktop view */
+.desktop-view {
+  background-color: lightgreen;
+  color: black;
+  padding: 40px;
+  font-size: 18px;
+}
