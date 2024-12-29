@@ -59,7 +59,11 @@ const Scene = () => {
   return (
     <>
       <NavBar />
-      <Canvas>
+      <Canvas  dpr={window.devicePixelRatio}
+  camera={{
+    position: [0, 0, 5],
+    fov: isMobile ? 75 : 50, // Adjust field of view for mobile
+  }}>
         <directionalLight position={[3, 4, 4]} intensity={1.5} />
         <ambientLight intensity={0.2} />
         { /*  only show if card is click       v */}
@@ -67,32 +71,32 @@ const Scene = () => {
         {isMobile ? (
           <>
             <Planecard
-              position={[0, 0, 0]} // Centered for mobile
-              args={[0.5, 0.7, 0.5]} // Adjusted size for mobile
+              position={cardPositions} // Centered for mobile
+              args={[1, 1]} // Adjusted size for mobile
               onClick={(position) => handleCardClick(position, 0)}
               cardId={0}
               activeCard={activeCard}
               setActiveCard={setActiveCard}
             />
             <Planecard
-              position={[0, -2, 0]} // Stacked vertically
-              args={[0.5, 0.7, 0.5]}
+              position={cardPositions} // Stacked vertically
+              args={[1, 1]}
               onClick={(position) => handleCardClick(position, 1)}
               cardId={1}
               activeCard={activeCard}
               setActiveCard={setActiveCard}
             />
             <Planecard
-              position={[0, -4, 0]}
-              args={[0.5, 0.7, 0.5]}
+              position={cardPositions}
+              args={[1, 1]}
               onClick={(position) => handleCardClick(position, 2)}
               cardId={2}
               activeCard={activeCard}
               setActiveCard={setActiveCard}
             />
             <Planecard
-              position={[0, -6, 0]}
-              args={[0.5, 0.7, 0.5]}
+              position={cardPositions}
+              args={[1, 1]}
               onClick={(position) => handleCardClick(position, 3)}
               cardId={3}
               activeCard={activeCard}
