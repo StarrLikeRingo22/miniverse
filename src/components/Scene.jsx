@@ -59,11 +59,7 @@ const Scene = () => {
   return (
     <>
       <NavBar />
-      <Canvas  dpr={window.devicePixelRatio}
-  camera={{
-    position: [0, 0, 5],
-    fov: isMobile ? undefined : 50, // Adjust field of view for mobile
-  }}>
+      <Canvas>
         <directionalLight position={[3, 4, 4]} intensity={1.5} />
         <ambientLight intensity={0.2} />
         { /*  only show if card is click       v */}
