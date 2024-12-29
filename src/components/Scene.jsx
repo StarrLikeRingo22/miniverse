@@ -62,7 +62,7 @@ const Scene = () => {
       <Canvas  dpr={window.devicePixelRatio}
   camera={{
     position: [0, 0, 5],
-    fov: isMobile ? 75 : 50, // Adjust field of view for mobile
+    fov: isMobile ? undefined : 50, // Adjust field of view for mobile
   }}>
         <directionalLight position={[3, 4, 4]} intensity={1.5} />
         <ambientLight intensity={0.2} />
