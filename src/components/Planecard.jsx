@@ -127,7 +127,7 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
       onPointerEnter={() => handlePointEnter(cardId, activeCard)}
       onPointerLeave={() => setHover(false)}
       onClick={() => handleClick(cardId)}
-      activeCard={activeCard} // needs to be defined. returns undefined in UseFrame logic
+      activeCard={activeCard}
       setActiveCard={setActiveCard}
     >
       <planeGeometry args={args} />
