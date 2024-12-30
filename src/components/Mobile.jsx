@@ -5,14 +5,8 @@ import { useThree } from "@react-three/fiber";
 
 
 const Mobile = ({ handleCardClick, activeCard, setActiveCard }) => {
-  const cardSize = [0.5, 0.5, 1] // Adjusted size for mobile
+  const cardSize = [0.5, 0.7, 0.5] // Adjusted size for mobile
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = useMediaQuery({ query: '(max-width: 800px)' });
-    setIsMobile(checkMobile);
-  }, []);
 
 
   return (

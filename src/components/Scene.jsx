@@ -53,13 +53,10 @@ const Scene = () => {
       ];
 
   console.log('TV positioning:', tvPosition)
-  // Debugging log for key values
   console.log("isMobile:", isMobile);
   console.log("cardSize:", cardSize);
-
-
-console.log("Active card:", activeCard);
-console.log("Planecard positions:", isMobile ? "Vertical (Mobile)" : "Horizontal (Desktop)");
+  console.log("Active card:", activeCard);
+  console.log("Planecard positions:", isMobile ? "Vertical (Mobile)" : "Horizontal (Desktop)");
 
   return (
     <>
@@ -71,11 +68,7 @@ console.log("Planecard positions:", isMobile ? "Vertical (Mobile)" : "Horizontal
         <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
         {isMobile ? (
           <>
-            <Mobile
-                handleCardClick={handleCardClick}
-                activeCard={activeCard}
-                setActiveCard={setActiveCard}
-            />
+            <Mobile handleCardClick={handleCardClick} activeCard={activeCard} setActiveCard={setActiveCard} />
           </>
         ) : (
           <>
