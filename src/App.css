@@ -64,6 +64,10 @@ p {
   /* Adds space between lines in the paragraph */
 }
 
+a {
+  background-color: rgb(4, 46, 3);
+}
+
 /* Horizontal line for section separation */
 .widthLine {
   width: 100%;
@@ -109,7 +113,6 @@ h4 {
 
 .bottomNav,
 .topNav {
-  font-family: var(--font-mono);
   z-index: 100000;
   font-size: 17px;
 }

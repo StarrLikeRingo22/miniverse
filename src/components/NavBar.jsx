@@ -11,6 +11,7 @@ const NavBar = () => {
       position: 'fixed',
       top: 0,
       fontSize: '16px',
+      
       textDecoration: 'none',
     }} >
           <div className="topNav" style={{ 
