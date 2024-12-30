@@ -9,16 +9,12 @@ const Mobile = ({ handleCardClick, activeCard, setActiveCard }) => {
 
   const { camera } = useThree();
 
-  // Ensure the camera is close enough to view the cards on mobile
-  React.useEffect(() => {
-    if (camera) {
-      camera.position.set(0, 0, 5); // Adjust the Z position to ensure it's zoomed out
-          }
-  }, [camera]);
+
 
 
   return (
     <>
+    <div style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
       <Planecard
         position={[0, 1.5, 0]}
         args={cardSize}
@@ -51,6 +47,8 @@ const Mobile = ({ handleCardClick, activeCard, setActiveCard }) => {
         activeCard={activeCard}
         setActiveCard={setActiveCard}
       />
+
+</div>
     </>
   )
 }
