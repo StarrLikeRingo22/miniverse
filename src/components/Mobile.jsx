@@ -12,9 +12,8 @@ const Mobile = ({ handleCardClick, activeCard, setActiveCard }) => {
   // Ensure the camera is close enough to view the cards on mobile
   React.useEffect(() => {
     if (camera) {
-      camera.position.set(0, 1.5, 3); // Adjust the Z position to ensure it's zoomed out
-      camera.lookAt(0, 1.5, 0); // Point camera towards the cards
-    }
+      camera.position.set(0, 0, 5); // Adjust the Z position to ensure it's zoomed out
+          }
   }, [camera]);
 
 
