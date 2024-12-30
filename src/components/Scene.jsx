@@ -4,6 +4,7 @@ import '../App.css'
 import Planecard from './Planecard.jsx'
 import TVModel from './TVModel.jsx'
 import NavBar from './NavBar.jsx'
+import Mobile from './Mobile.jsx'
 import { useMediaQuery } from 'react-responsive'
 
 
@@ -56,6 +57,10 @@ const Scene = () => {
   console.log("isMobile:", isMobile);
   console.log("cardSize:", cardSize);
 
+
+console.log("Active card:", activeCard);
+console.log("Planecard positions:", isMobile ? "Vertical (Mobile)" : "Horizontal (Desktop)");
+
   return (
     <>
       <NavBar />
@@ -66,37 +71,10 @@ const Scene = () => {
         <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
         {isMobile ? (
           <>
-            <Planecard
-              position={cardPositions} // Centered for mobile
-              args={[1, 1]} // Adjusted size for mobile
-              onClick={(position) => handleCardClick(position, 0)}
-              cardId={0}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={cardPositions} // Stacked vertically
-              args={[1, 1]}
-              onClick={(position) => handleCardClick(position, 1)}
-              cardId={1}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={cardPositions}
-              args={[1, 1]}
-              onClick={(position) => handleCardClick(position, 2)}
-              cardId={2}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
-            />
-            <Planecard
-              position={cardPositions}
-              args={[1, 1]}
-              onClick={(position) => handleCardClick(position, 3)}
-              cardId={3}
-              activeCard={activeCard}
-              setActiveCard={setActiveCard}
+            <Mobile
+                handleCardClick={handleCardClick}
+                activeCard={activeCard}
+                setActiveCard={setActiveCard}
             />
           </>
         ) : (
