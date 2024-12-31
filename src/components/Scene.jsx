@@ -84,12 +84,8 @@ const Scene = () => {
              <ambientLight intensity={0.5} />
              <directionalLight position={[5, 5, 5]} intensity={1.2} />
  
-             {/* Planecards for Mobile */}
-             <Mobile
-               handleCardClick={handleCardClick}
-               activeCard={activeCard}
-               setActiveCard={setActiveCard}
-             />
+             <Planecard position={[0, 0, 0]} args={cardSize} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
+
            </Canvas>
          </div>
         )}
