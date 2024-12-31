@@ -1,6 +1,6 @@
 import { shaderMaterial } from "@react-three/drei"
 import { extend, useFrame, useLoader, useThree } from "@react-three/fiber"
-import { act, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { TextureLoader } from "three"
 import * as THREE from 'three'
 
@@ -57,15 +57,13 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
     useLoader(TextureLoader, `/img/disp1.jpg`),
     useLoader(TextureLoader, `/img/disp2.jpg`),
     useLoader(TextureLoader, `/img/disp3.jpg`),
-  ] 
-  const [dispTexture, setDispTexture ] = useState(displacementTextures[0])
+  ]
+  const [dispTexture, setDispTexture] = useState(displacementTextures[0])
   const [hovered, setHover] = useState(false)
   const [zoom, setZoom] = useState(false)
-  const [dispFactor, setDispFactor] = useState(0) // distortion factor
+  const [dispFactor, setDispFactor] = useState(0)
   const { camera } = useThree()
-  const vec = new THREE.Vector3()
 
-  const targetPosition = useRef(new THREE.Vector3()) // Default camera target
   const originalPosition = new THREE.Vector3(0, 0, 5) // original position
 
   useFrame((state, delta) => {
@@ -80,12 +78,12 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
         const direction = targetWorldPosition.clone().sub(camera.position).normalize()
         camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), direction)
       } else if (!zoom) {
-      camera.position.lerp(originalPosition, 0.05)    // Smoothly return to the original position
-      const defaultDirection = new THREE.Vector3(0, 0, 0)       // Reset camera orientation to default
-      camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), defaultDirection)
-    }
+        camera.position.lerp(originalPosition, 0.05)    // Smoothly return to the original position
+        const defaultDirection = new THREE.Vector3(0, 0, 0)       // Reset camera orientation to default
+        camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), defaultDirection)
+      }
 
-  }
+    }
     // Displacement Function
     if (hovered && dispFactor < 1) {
       setDispFactor((prev) => Math.min(prev + delta * 2, 1))
@@ -95,11 +93,11 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
   })
 
   const handlePointEnter = (cardId) => {
-    setHover(true) 
-  
+    setHover(true)
+
     if (cardId >= 0 && cardId < displacementTextures.length) {
       setDispTexture(displacementTextures[cardId]) // Seperate images upon card index
-    } 
+    }
   }
 
   const handleClick = (cardId) => {
@@ -112,13 +110,11 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
       // Switch to a new card
       setActiveCard(cardId) // Update active card
       setZoom(true) // Enable zoom for the new card
-
     }
     if (onClick) {
       onClick(position)
     }
   }
-
 
   return (
     <mesh
@@ -131,16 +127,16 @@ const Planecard = ({ position, args, onClick, cardId, activeCard, setActiveCard 
       setActiveCard={setActiveCard}
     >
       <planeGeometry args={args} />
-      
-        <distortionShaderMaterial
-          tex={blueCard}
-          tex2={dispTexture}
-          disp={dispCard}
-          dispFactor={dispFactor}
-          effectFactor={0.4}
-          toneMapped={false}
-          side={THREE.DoubleSide}
-        />
+
+      <distortionShaderMaterial
+        tex={blueCard}
+        tex2={dispTexture}
+        disp={dispCard}
+        dispFactor={dispFactor}
+        effectFactor={0.4}
+        toneMapped={false}
+        side={THREE.DoubleSide}
+      />
 
     </mesh>
   )
