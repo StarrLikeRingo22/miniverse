@@ -10,7 +10,6 @@ const NavBar = () => {
         position: 'fixed',
         top: 0,
         fontSize: '16px',
-
         textDecoration: 'none',
       }} >
       <div className="topNav" style={{
@@ -27,7 +26,7 @@ const NavBar = () => {
         top: 35,
         left: '0',
       }}></div>
-
+      
       <div className="footer" style={{
         height: '5px', // height of bar
         padding: '20px 20px',
@@ -35,7 +34,6 @@ const NavBar = () => {
         bottom: 0,
         left: 0,
       }}>
-
         <div className="widthLine" style={{
           position: 'absolute',
           bottom: 34,
@@ -51,13 +49,7 @@ const NavBar = () => {
           <a href="/Attributions">Attributions</a>
         </div>
       </div>
-
-
     </div>
-
-
-
-
   )
 }
 

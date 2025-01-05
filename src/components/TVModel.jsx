@@ -1,5 +1,5 @@
 import { useSpring } from "@react-spring/three"
-import { useLoader, useThree } from "@react-three/fiber"
+import { useLoader } from "@react-three/fiber"
 import { useEffect, useRef, useState } from "react"
 import { TextureLoader, Raycaster, Vector2 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"
@@ -7,20 +7,17 @@ import { Text } from "@react-three/drei"
 import { animated } from "@react-spring/three"
 
 
-const TVModel = ({ position, show, activeCard }) => {
+const TVModel = ({ position, show, activePlanet }) => {
 
-  const tvRef = useRef()
   const screenTexture = useLoader(TextureLoader, '/img/screen.jpg')
+  const tvRef = useRef()
   const [tvModel, setTvModel] = useState(null)
-  const [activeButton, setActiveButton] = useState(null)
-  const { camera, pointer } = useThree() // Access mouse position and camera
-  const raycaster = new Raycaster()
+  const [showTV, setShowTV] = useState(false);
 
   useEffect(() => {
     new GLTFLoader().load('/models/lowpoly_tv.glb', (gltf) => {
       const model = gltf.scene
       setTvModel(model)
-
       console.log('TV Model Structure:', model)
       // Traverse the model to find the mesh by name and apply the texture to the screen
       model.traverse((child) => {
@@ -48,50 +45,16 @@ const TVModel = ({ position, show, activeCard }) => {
     })
   }, [screenTexture])
 
- // Raycasting to detect button clicks
- const handleClick = (event) => {
-  const pointerVector = new Vector2(
-    (pointer.x / window.innerWidth) * 2 - 1,
-    -(pointer.y / window.innerHeight) * 2 + 1
-  )
-
-  // Set raycaster's origin and direction
-  raycaster.ray.origin.setFromMatrixPosition(camera.matrixWorld)
-  raycaster.ray.direction.set(pointerVector.x, pointerVector.y, 1)
-    .unproject(camera)
-    .sub(raycaster.ray.origin)
-    .normalize()
-
-  // Check for intersections with the TV model
-  const intersects = raycaster.intersectObjects(tvModel ? tvModel.children : [], true)
-
-  if (intersects.length > 0) {
-    const object = intersects[0].object
-    if (object.userData.name) {
-      console.log("Button clicked:", object.userData.name)
-      onButtonClick(object.userData.name) // Pass clicked button name to parent (scene.jsx)
-    }
-  }
-}
-
-  // Add event listener for click
-  useEffect(() => {
-    window.addEventListener("click", handleClick)
-    return () => {
-      window.removeEventListener("click", handleClick)
-    }
-  }, [handleClick])
-
   const springProps = useSpring({
     position: position, // Maintain the target card position
     scale: show ? [1, 1, 1] : [0, 0, 0], // Shrink effect when disappearing
-    opacity: show ? 1 : 0, // Fade in/out effect
-    config: { tension: 170, friction: 26 },
+    opacity: false, // Fade in/out effect
+    config: { tension: 150, friction: 26 },
     reset: true
   })
 
   const renderContent = () => {
-    switch (activeCard) {
+    switch (activePlanet) {
       case 0:
         return (
           <>
@@ -100,11 +63,8 @@ const TVModel = ({ position, show, activeCard }) => {
           </Text>
           <Text position={[0, 0.2, 0.73]} fontSize={0.05} color="white">
             Phone: +1 {'('}647{')'} 607-2965{"\n\n"}
-
             Email: aabdelgadir@myseneca.ca{"\n\n"}
-
             LinkedIn: linkedin.com/in/abdalla-abdelgadir-35587b243/{"\n\n"}
-
             Github: github.com/StarrLikeRingo22/{"\n\n"}
           </Text>
         </>
@@ -249,7 +209,6 @@ const TVModel = ({ position, show, activeCard }) => {
           <Text position={[-0.04, -0.16, 0.73]} fontSize={0.04} color="white">
             {"-        "}Operated office machines, such as photocopiers and scanners,{"\n         "}facsimile machines, voice mail systems, and personal computers
           </Text>
-
           <Text position={[-0.54, -0.24, 0.73]} fontSize={0.04} color="white">
             Project Manager
           </Text>
@@ -273,17 +232,14 @@ const TVModel = ({ position, show, activeCard }) => {
     }
   }
 
-  
-
   return (
     tvModel && (
-      <animated.group ref={tvRef} position={position} {...springProps}>
+      <animated.group ref={tvRef} position={position} show={showTV} {...springProps}  >
         <primitive object={tvModel} />
-        <mesh position={[0, 0, 0]}>
-          <planeGeometry args={[1, 1]} />
-          <meshStandardMaterial map={screenTexture} />
+        <mesh position={[0, 0, 0]}  >
+        <planeGeometry args={[1, 1]} />
+          <meshStandardMaterial map={screenTexture}  />
             {renderContent()}
-      
         </mesh>
       </animated.group>
     )

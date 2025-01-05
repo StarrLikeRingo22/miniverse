@@ -4,13 +4,16 @@ import '../App.css'
 import Planecard from './Planecard.jsx'
 import TVModel from './TVModel.jsx'
 import NavBar from './NavBar.jsx'
+import { Planet } from './Planets.jsx'
 
 const Scene = () => {
 
   const [showTV, setShowTV] = useState(false)
   const [tvPosition, setTvPosition] = useState([0, 0, 0])
-  const [activeCard, setActiveCard] = useState(null)
+  const [activePlanet, setActivePlanet] = useState(null)
+  // const [activeCard, setActiveCard] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+
 
   // Detect mobile devices using user-agent
   useEffect(() => {
@@ -23,11 +26,12 @@ const Scene = () => {
     checkMobile();
   }, []);
 
-  const handleCardClick = (position, cardId) => {
+  const handleClick = (position, planetId) => {
     setTvPosition(position)
-    setActiveCard(cardId)
+    setActivePlanet(planetId)
     setShowTV(prev => !prev)
-    if (showTV && activeCard === cardId) {
+
+    if (showTV && activePlanet === planetId) {
       setShowTV(false)
     } else {
       setShowTV(true)
@@ -39,16 +43,23 @@ const Scene = () => {
       <NavBar />
       {!isMobile && (
         <Canvas>
+
           <directionalLight position={[3, 4, 4]} intensity={1.5} />
           <ambientLight intensity={0.2} />
-          { /*  only show if card is click       v */}
-          <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
+
+          <TVModel position={tvPosition} show={showTV} setShowTV={setShowTV} activePlanet={activePlanet} />
           <>
+            <Planet planetId={0} position={[-2.7, 0.3, 0]} scale={[0.03, 0.03, 0.03]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+            <Planet planetId={1} position={[-0.85, 0.3, 0]} scale={[0.044, 0.044, 0.044]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+            <Planet planetId={2} position={[1, 0.2, 0]} scale={[0.53, 0.53, 0.53]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
+            <Planet planetId={3} position={[2.9, 0.2, 0]} scale={[0.2, 0.2, 0.2]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Fragment */}
+          </>
+          {/* <>
             <Planecard position={[-2.6, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />
             <Planecard position={[0.9, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
             <Planecard position={[2.6, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 2)} cardId={2} activeCard={activeCard} setActiveCard={setActiveCard} />
             <Planecard position={[-0.8, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 3)} cardId={3} activeCard={activeCard} setActiveCard={setActiveCard} />
-          </>
+          </> */}
         </Canvas>
       )}
 
@@ -57,18 +68,18 @@ const Scene = () => {
           <Canvas>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1.2} />
-            <TVModel position={tvPosition} show={showTV} activeCard={activeCard} />
+            <TVModel position={tvPosition} show={showTV} setShowTV={setShowTV} activePlanet={activePlanet} />
             <>
-              <mesh>
-                <Planecard position={[0, 2.2, 0]} args={[1, 1.4]} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />
-                <Planecard position={[0, 0.65, 0]} args={[1, 1.4]} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
-                <Planecard position={[0, -0.9, 0]} args={[1, 1.4]} onClick={(position) => handleCardClick(position, 2)} cardId={2} activeCard={activeCard} setActiveCard={setActiveCard} />
-                <Planecard position={[0, -2.45, 0]} args={[1, 1.4]} onClick={(position) => handleCardClick(position, 3)} cardId={3} activeCard={activeCard} setActiveCard={setActiveCard} />
-              </mesh>
+              <Planet planetId={0} position={[0, 2.4, 0]} scale={[0.033, 0.033, 0.033]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+              <Planet planetId={1} position={[0, 1, 0]} scale={[0.044, 0.044, 0.044]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+              <Planet planetId={2} position={[0, -0.6, 0]} scale={[0.5, 0.5, 0.5]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
+              <Planet planetId={3} position={[0, -2.4, 0]} scale={[0.25, 0.25, 0.25]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Fragment */}
             </>
           </Canvas>
         </div>
       )}
+
+
     </>
   )
 }
