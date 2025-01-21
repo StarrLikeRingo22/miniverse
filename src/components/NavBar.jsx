@@ -26,7 +26,7 @@ const NavBar = () => {
         top: 35,
         left: '0',
       }}></div>
-      
+
       <div className="footer" style={{
         height: '5px', // height of bar
         padding: '20px 20px',

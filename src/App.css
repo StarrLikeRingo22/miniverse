@@ -9,12 +9,10 @@
 
 .tv-content {
   width: 200px;
-  /* Adjust based on TV screen size */
   height: 150px;
   overflow: auto;
   color: white;
   background: rgba(0, 0, 0, 0.8);
-  /* Slight transparency for TV effect */
   padding: 10px;
   font-family: Arial, sans-serif;
   border-radius: 5px;
@@ -33,42 +31,33 @@
   padding: 20px;
   font-family: Arial, sans-serif;
   color: white;
-  /* Adjust for theme */
-
 }
 
 
 .section-row {
   display: flex;
   justify-content: space-between;
-  /* Aligns the columns horizontally */
   gap: 10px;
-  /* Spacing between columns */
 }
 
 .section-column {
   flex: 1;
-  /* Each column will take equal space */
   padding: 10px;
 }
 
-/* Ensures that the columns are aligned vertically at the top */
 h2 {
   margin-bottom: 10px;
 }
 
 p {
   margin-bottom: 10px;
-  /* Space between each paragraph */
   line-height: 1.6;
-  /* Adds space between lines in the paragraph */
 }
 
 a {
   background-color: rgb(0, 0, 0);
 }
 
-/* Horizontal line for section separation */
 .widthLine {
   width: 100%;
   height: 1px;
@@ -81,7 +70,6 @@ a {
   margin: 20px;
 }
 
-/* Additional Styling */
 h1 {
   margin-bottom: 10px;
   font-size: 2rem;
@@ -140,23 +128,39 @@ h4 {
     align-items: center;
   }
 
-  .planecard > .card {
+  .planecard>.card {
     margin: 10px 0;
   }
 }
 
-/* For mobile view */
-.mobile-view {
-  background-color: rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-  padding: 20px;
-  font-size: 16px;
+
+
+#hover-tooltip {
+  position: absolute;
+  block-size: 1.5em;
+  display: none;
+  width: auto;
+  background-color: rgba(78, 78, 78, 0.8);
+  color: white;
+  font-size: 20px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 10;
+
 }
 
-/* For desktop view */
-.desktop-view {
-  background-color: rgb(0, 0, 0);
-  color: black;
-  padding: 40px;
-  font-size: 18px;
+#phone-tooltip {
+  position: absolute;
+  block-size: 1.5em;
+  display: none !important;
+  width: auto;
+  background-color: rgba(78, 78, 78, 0.8);
+  color: white;
+  font-size: 20px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  pointer-events: all;
+  z-index: 9999;
+
 }

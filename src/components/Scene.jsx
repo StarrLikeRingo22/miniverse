@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import '../App.css'
-import Planecard from './Planecard.jsx'
-import TVModel from './TVModel.jsx'
 import NavBar from './NavBar.jsx'
+import Phone from './Phone.jsx'
 import { Planet } from './Planets.jsx'
+import { ZoomProvider } from './ZoomProvider.jsx'
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 const Scene = () => {
 
   const [showTV, setShowTV] = useState(false)
-  const [tvPosition, setTvPosition] = useState([0, 0, 0])
+  const [activePhone, setActivePhone] = useState(false)
+  const [phonePosition, setPhonePosition] = useState([0, 0, 0])
   const [activePlanet, setActivePlanet] = useState(null)
-  // const [activeCard, setActiveCard] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
 
 
@@ -26,16 +27,22 @@ const Scene = () => {
     checkMobile();
   }, []);
 
-  const handleClick = (position, planetId) => {
-    setTvPosition(position)
-    setActivePlanet(planetId)
-    setShowTV(prev => !prev)
+  const handleClick = (position, id, type) => {
+    setPhonePosition(position);
+    if (type === "planet") {
+      setActivePlanet(id);
+    } else if (type === "tv") {
+      setPhonePosition(position);
+      setActivePhone(id);
+      console.log("zooming out")
 
-    if (showTV && activePlanet === planetId) {
-      setShowTV(false)
-    } else {
-      setShowTV(true)
     }
+    setShowTV((prev) => {
+      if (showTV && (activePlanet === id || activePhone === id)) {
+        return false;
+      }
+      return true;
+    });
   }
 
   return (
@@ -44,22 +51,26 @@ const Scene = () => {
       {!isMobile && (
         <Canvas>
 
-          <directionalLight position={[3, 4, 4]} intensity={1.5} />
-          <ambientLight intensity={0.2} />
+          <directionalLight position={[9, -5, 10]} intensity={0.5} />
+          <ambientLight intensity={1.5} />
+          <ZoomProvider>
 
-          <TVModel position={tvPosition} show={showTV} setShowTV={setShowTV} activePlanet={activePlanet} />
-          <>
-            <Planet planetId={0} position={[-2.7, 0.3, 0]} scale={[0.03, 0.03, 0.03]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
-            <Planet planetId={1} position={[-0.85, 0.3, 0]} scale={[0.044, 0.044, 0.044]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
-            <Planet planetId={2} position={[1, 0.2, 0]} scale={[0.53, 0.53, 0.53]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
-            <Planet planetId={3} position={[2.9, 0.2, 0]} scale={[0.2, 0.2, 0.2]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Fragment */}
-          </>
-          {/* <>
-            <Planecard position={[-2.6, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 0)} cardId={0} activeCard={activeCard} setActiveCard={setActiveCard} />
-            <Planecard position={[0.9, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 1)} cardId={1} activeCard={activeCard} setActiveCard={setActiveCard} />
-            <Planecard position={[2.6, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 2)} cardId={2} activeCard={activeCard} setActiveCard={setActiveCard} />
-            <Planecard position={[-0.8, 0, 0]} args={[1, 1.4, 1]} onClick={(position) => handleCardClick(position, 3)} cardId={3} activeCard={activeCard} setActiveCard={setActiveCard} />
-          </> */}
+            <Phone position={phonePosition} show={showTV} setShowTV={setShowTV} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyTV", "tv")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
+
+            <>
+              <Planet planetId={0} position={[-4, 0.45, 0]} scale={[0.045, 0.045, 0.045]} onClick={(position) => handleClick(position, 0, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
+
+              <Planet planetId={1} position={[-1.7, 0.3, 0]} scale={[0.032, 0.032, 0.032]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
+              <Planet planetId={2} position={[0, 0.35, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+              <Planet planetId={3} position={[1.5, 0.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 7)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+              <Planet planetId={4} position={[3.4, 0.2, 0]} scale={[0.15, 0.15, 0.15]} onClick={(position) => handleClick(position, 8)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
+            </>
+
+          </ZoomProvider>
+          <EffectComposer>
+
+            <Bloom luminanceThreshold={0.3} luminanceSmoothing={1} intensity={0.5} />
+          </EffectComposer>
         </Canvas>
       )}
 
@@ -68,13 +79,22 @@ const Scene = () => {
           <Canvas>
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1.2} />
-            <TVModel position={tvPosition} show={showTV} setShowTV={setShowTV} activePlanet={activePlanet} />
-            <>
-              <Planet planetId={0} position={[0, 2.4, 0]} scale={[0.033, 0.033, 0.033]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
-              <Planet planetId={1} position={[0, 1, 0]} scale={[0.044, 0.044, 0.044]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
-              <Planet planetId={2} position={[0, -0.6, 0]} scale={[0.5, 0.5, 0.5]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
-              <Planet planetId={3} position={[0, -2.4, 0]} scale={[0.25, 0.25, 0.25]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Fragment */}
-            </>
+            <ZoomProvider>
+
+              <Phone position={phonePosition} show={showTV} setShowTV={setShowTV} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyTV", "tv")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
+              <>
+                <Planet planetId={0} position={[0, 2.45, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
+                <Planet planetId={1} position={[0, 1, 0]} scale={[0.024, 0.024, 0.024]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+                <Planet planetId={2} position={[0, -0.2, 0]} scale={[0.03, 0.03, 0.03]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+                <Planet planetId={3} position={[0, -1.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Rocky */}
+                <Planet planetId={4} position={[0, -2.6, 0]} scale={[0.1, 0.1, 0.1]} onClick={(position) => handleClick(position, 4)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
+
+              </>
+            </ZoomProvider>
+            <EffectComposer>
+
+              <Bloom luminanceThreshold={0.3} luminanceSmoothing={1} intensity={0.5} />
+            </EffectComposer>
           </Canvas>
         </div>
       )}
