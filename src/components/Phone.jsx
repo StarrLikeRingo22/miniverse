@@ -301,7 +301,14 @@ const Phone = ({ position, show, onClick, activePhone, setActivePhone, activePla
   const handleClick = () => {
     console.log("phone clicked.")
     setZoom(false)
-
+    setShowPhone((prev) => {
+      console.log("Previous showPhone:", prev);
+      if (prev) {
+        console.log("Hiding phone...");
+        return false; // Hide the phone
+      }
+      return prev;
+    });
     if (onClick) {
       onClick(position)
     }
@@ -314,7 +321,7 @@ const Phone = ({ position, show, onClick, activePhone, setActivePhone, activePla
         ref={phoneRef}
         position={position}
         show={showPhone}
-        tvId="lowPolyTV"
+        phoneId="lowPolyPhone"
         activePhone={activePhone}
         setActivePhone={setActivePhone}
         activePlanet={activePlanet}

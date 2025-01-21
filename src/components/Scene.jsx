@@ -9,7 +9,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 const Scene = () => {
 
-  const [showTV, setShowTV] = useState(false)
+  const [showPhone, setShowPhone] = useState(false)
   const [activePhone, setActivePhone] = useState(false)
   const [phonePosition, setPhonePosition] = useState([0, 0, 0])
   const [activePlanet, setActivePlanet] = useState(null)
@@ -31,18 +31,20 @@ const Scene = () => {
     setPhonePosition(position);
     if (type === "planet") {
       setActivePlanet(id);
-    } else if (type === "tv") {
-      setPhonePosition(position);
-      setActivePhone(id);
-      console.log("zooming out")
+    } else if (type === "phone") {
 
+      setActivePhone(id);
+     
     }
-    setShowTV((prev) => {
-      if (showTV && (activePlanet === id || activePhone === id)) {
-        return false;
-      }
-      return true;
-    });
+   
+    setShowPhone(prev => !prev)
+
+    if (showPhone && activePlanet === id || activePhone === id) {
+      setShowTV(false)
+    } else {
+      setShowTV(true)
+    }
+   
   }
 
   return (
@@ -55,7 +57,7 @@ const Scene = () => {
           <ambientLight intensity={1.5} />
           <ZoomProvider>
 
-            <Phone position={phonePosition} show={showTV} setShowTV={setShowTV} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyTV", "tv")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
+            <Phone position={phonePosition} show={showPhone} setShowPhone={setShowPhone} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyPhone", "phone")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
 
             <>
               <Planet planetId={0} position={[-4, 0.45, 0]} scale={[0.045, 0.045, 0.045]} onClick={(position) => handleClick(position, 0, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
