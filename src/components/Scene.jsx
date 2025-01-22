@@ -25,6 +25,7 @@ const Scene = () => {
       );
     };
     checkMobile();
+
   }, []);
 
   const handleClick = (position, id, type) => {
@@ -44,14 +45,15 @@ const Scene = () => {
     } else {
       setShowTV(true)
     }
-   
   }
+   
+  
 
   return (
     <>
       <NavBar />
       {!isMobile && (
-        <Canvas>
+        <Canvas style={{width: "100%", height: `50vh`, position: `absolute`}}>
 
           <directionalLight position={[9, -5, 10]} intensity={0.5} />
           <ambientLight intensity={1.5} />
@@ -83,7 +85,7 @@ const Scene = () => {
             <directionalLight position={[5, 5, 5]} intensity={1.2} />
             <ZoomProvider>
 
-              <Phone position={phonePosition} show={showTV} setShowTV={setShowTV} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyTV", "tv")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
+            <Phone position={phonePosition} show={showPhone} setShowPhone={setShowPhone} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyPhone", "phone")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
               <>
                 <Planet planetId={0} position={[0, 2.45, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
                 <Planet planetId={1} position={[0, 1, 0]} scale={[0.024, 0.024, 0.024]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}

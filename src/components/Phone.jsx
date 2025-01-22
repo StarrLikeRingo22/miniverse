@@ -15,7 +15,6 @@ const Phone = ({ position, show, onClick, activePhone, setActivePhone, activePla
   const [phoneModel, setPhoneModel] = useState(null)
   const [showPhone, setShowPhone] = useState(false);
   const [hovered, setHover] = useState(false)
-  const [phoneClicked, setPhoneClicked] = useState(false);
   const { zoom, setZoom } = useZoom();
 
 
