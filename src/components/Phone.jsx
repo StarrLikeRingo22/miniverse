@@ -3,7 +3,7 @@ import { useFrame, useLoader, useThree } from "@react-three/fiber"
 import { useEffect, useRef, useState } from "react"
 import { TextureLoader, Raycaster, Vector2 } from "three"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"
-import { Text } from "@react-three/drei"
+import { Html, Text } from "@react-three/drei"
 import { animated } from "@react-spring/three"
 import '../App.css'
 import { useZoom } from "./ZoomProvider"
@@ -300,14 +300,6 @@ const Phone = ({ position, show, onClick, activePhone, setActivePhone, activePla
   const handleClick = () => {
     console.log("phone clicked.")
     setZoom(false)
-    setShowPhone((prev) => {
-      console.log("Previous showPhone:", prev);
-      if (prev) {
-        console.log("Hiding phone...");
-        return false; // Hide the phone
-      }
-      return prev;
-    });
     if (onClick) {
       onClick(position)
     }

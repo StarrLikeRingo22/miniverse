@@ -44,7 +44,7 @@ export function Planet({ position, scale, onClick, planetId, activePlanet, setAc
         camera.position.lerp(targetCameraPosition, 0.1) // Smooth camera transition
         const direction = targetWorldPosition.clone().sub(camera.position).normalize()
         camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), direction)
-      } else if (!zoom || !ref.current) {
+      } else if (!zoom || ref.current) {
         camera.position.lerp(originalPosition, 0.1)    // Smoothly return to the original position
         const defaultDirection = new THREE.Vector3(0, 0, 0)       // Reset camera orientation to default
         camera.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, -1), defaultDirection)

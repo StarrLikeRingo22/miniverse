@@ -33,18 +33,17 @@ const Scene = () => {
     if (type === "planet") {
       setActivePlanet(id);
     } else if (type === "phone") {
-
+      setPhonePosition(position);
       setActivePhone(id);
      
     }
    
-    setShowPhone(prev => !prev)
-
-    if (showPhone && activePlanet === id || activePhone === id) {
-      setShowTV(false)
-    } else {
-      setShowTV(true)
-    }
+    setShowPhone((prev) => {
+      if ((activePlanet === id || activePhone === id) || showPhone) {
+        return false;
+      }
+      return true;
+    });
   }
    
   
@@ -53,7 +52,7 @@ const Scene = () => {
     <>
       <NavBar />
       {!isMobile && (
-        <Canvas style={{width: "100%", height: `50vh`, position: `absolute`}}>
+        <Canvas style={{width: "100%", height: `100vh`, position: `absolute`}}>
 
           <directionalLight position={[9, -5, 10]} intensity={0.5} />
           <ambientLight intensity={1.5} />
