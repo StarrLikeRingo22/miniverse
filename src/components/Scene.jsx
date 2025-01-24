@@ -9,7 +9,7 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 const Scene = () => {
 
-  const [showPhone, setShowPhone] = useState(false)
+  const [showPhone, setShowPhone] = useState(null)
   const [activePhone, setActivePhone] = useState(false)
   const [phonePosition, setPhonePosition] = useState([0, 0, 0])
   const [activePlanet, setActivePlanet] = useState(null)
@@ -32,18 +32,23 @@ const Scene = () => {
     setPhonePosition(position);
     if (type === "planet") {
       setActivePlanet(id);
-    } else if (type === "phone") {
-      setPhonePosition(position);
-      setActivePhone(id);
-     
-    }
-   
-    setShowPhone((prev) => {
-      if ((activePlanet === id || activePhone === id) || showPhone) {
-        return false;
+      setShowPhone(true); 
+      if (activePlanet === id && showPhone) {
+        setShowPhone(false);
+      } else {
+        setActivePlanet(id);
+        setShowPhone(true);
       }
-      return true;
-    });
+      
+    } else if (type === "phone") {
+      setActivePhone(id);
+      setShowPhone((prev) => {
+        if (prev || activePhone === id) {
+          return false; 
+        }
+        return prev; 
+      });
+    }
   }
    
   
@@ -63,10 +68,10 @@ const Scene = () => {
             <>
               <Planet planetId={0} position={[-4, 0.45, 0]} scale={[0.045, 0.045, 0.045]} onClick={(position) => handleClick(position, 0, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
 
-              <Planet planetId={1} position={[-1.7, 0.3, 0]} scale={[0.032, 0.032, 0.032]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
-              <Planet planetId={2} position={[0, 0.35, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
-              <Planet planetId={3} position={[1.5, 0.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 7)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
-              <Planet planetId={4} position={[3.4, 0.2, 0]} scale={[0.15, 0.15, 0.15]} onClick={(position) => handleClick(position, 8)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
+              <Planet planetId={1} position={[-1.7, 0.3, 0]} scale={[0.032, 0.032, 0.032]} onClick={(position) => handleClick(position, 1, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Earth */}
+              <Planet planetId={2} position={[0, 0.35, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 2, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+              <Planet planetId={3} position={[1.5, 0.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 3, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+              <Planet planetId={4} position={[3.4, 0.2, 0]} scale={[0.15, 0.15, 0.15]} onClick={(position) => handleClick(position, 4, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
             </>
 
           </ZoomProvider>
@@ -86,11 +91,11 @@ const Scene = () => {
 
             <Phone position={phonePosition} show={showPhone} setShowPhone={setShowPhone} activePhone={activePhone} setActivePhone={setActivePhone} onClick={(position) => handleClick(position, "lowPolyPhone", "phone")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} />
               <>
-                <Planet planetId={0} position={[0, 2.45, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 0)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
-                <Planet planetId={1} position={[0, 1, 0]} scale={[0.024, 0.024, 0.024]} onClick={(position) => handleClick(position, 1)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
-                <Planet planetId={2} position={[0, -0.2, 0]} scale={[0.03, 0.03, 0.03]} onClick={(position) => handleClick(position, 2)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
-                <Planet planetId={3} position={[0, -1.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 3)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Rocky */}
-                <Planet planetId={4} position={[0, -2.6, 0]} scale={[0.1, 0.1, 0.1]} onClick={(position) => handleClick(position, 4)} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
+                <Planet planetId={0} position={[0, 2.45, 0]} scale={[0.04, 0.04, 0.04]} onClick={(position) => handleClick(position, 0, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* King */}
+                <Planet planetId={1} position={[0, 1, 0]} scale={[0.024, 0.024, 0.024]} onClick={(position) => handleClick(position, 1, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Penguin */}
+                <Planet planetId={2} position={[0, -0.2, 0]} scale={[0.03, 0.03, 0.03]} onClick={(position) => handleClick(position, 2, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Space */}
+                <Planet planetId={3} position={[0, -1.3, 0]} scale={[0.02, 0.02, 0.02]} onClick={(position) => handleClick(position, 3, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Rocky */}
+                <Planet planetId={4} position={[0, -2.6, 0]} scale={[0.1, 0.1, 0.1]} onClick={(position) => handleClick(position, 4, "planet")} activePlanet={activePlanet} setActivePlanet={setActivePlanet} /> { /* Alien */}
 
               </>
             </ZoomProvider>
