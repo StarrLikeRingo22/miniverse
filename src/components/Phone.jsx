@@ -164,20 +164,20 @@ const Phone = ({ position, show, onClick, activePhone, setActivePhone, activePla
               {"-        "}Computes trip income and profit margin based on{"\n         "}user-defined income per kilometer
             </Text>
 
-            <Text position={[-0.42, -0.22, 1.08]} fontSize={0.06} color="silver">
-              Baymax AI Assistant Model
+            <Text position={[-0.7, -0.22, 1.08]} fontSize={0.06} color="silver">
+              Portals
             </Text>
-            <Text position={[-0.36, -0.32, 1.08]} fontSize={0.05} fontStyle="italic" color="silver">
-              https://github.com/noahabebe/baymax
+            <Text position={[-0.3, -0.32, 1.08]} fontSize={0.05} fontStyle="italic" color="silver">
+              https://github.com/StarrLikeRingo22/portals
             </Text>
-            <Text position={[-0.04, -0.45, 1.08]} fontSize={0.05} color="silver">
-              {"-        "}Baymax includes voice recognition and continuous learning{"\n         "}for enhanced productivity
+            <Text position={[-0.025, -0.45, 1.08]} fontSize={0.05} color="silver">
+              {"-        "}Built a responsive portal using React, JavaScript, and CSS for{"\n         "}smooth user interaction.
             </Text>
-            <Text position={[-0.113, -0.58, 1.08]} fontSize={0.05} color="silver">
-              {"-        "}It integrates with Unix systems to optimize workflows
+            <Text position={[-0.085, -0.6, 1.08]} fontSize={0.05} color="silver">
+              {"-        "}Managed dynamic content and component states for a {"\n         "}clean, user-friendly layout.
             </Text>
-            <Text position={[-0.055, -0.75, 1.08]} fontSize={0.05} color="silver">
-              {"-        "}Emotion recognition software using TensorFlow to provide{"\n         "}personalized support and recommendations based on{"\n         "}user emotions.
+            <Text position={[-0.07, -0.75, 1.08]} fontSize={0.05} color="silver">
+              {"-        "}Deployed the site on Vercel with Bash used for build and {"\n         "}version control tasks.
             </Text>
           </>
         )
